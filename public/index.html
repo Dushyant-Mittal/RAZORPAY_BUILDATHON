@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RecoverAI — Revenue Recovery Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brandmark">R</div>
+      <div><b>RecoverAI</b><span>Revenue Recovery Agent</span></div>
+    </div>
+    <nav>
+      <button class="nav active" data-view="overview"><span>◈</span> Overview</button>
+      <button class="nav" data-view="transactions"><span>▣</span> Transactions</button>
+      <button class="nav" data-view="agent"><span>✦</span> AI Agent</button>
+      <button class="nav" data-view="audit"><span>≡</span> Audit Trail</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="mode"><i></i><div><b>TEST MODE</b><span>No real money</span></div></div>
+      <button class="reset" id="resetBtn">↻ Reset demo</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">RAZORPAY AI BUILDATHON · TRACK 03</div>
+        <h1>AI Revenue Recovery</h1>
+        <p>Find revenue slipping away. Diagnose the cause. Recover it safely.</p>
+      </div>
+      <div class="top-actions">
+        <span class="live-dot"><i></i> Agent online</span>
+      </div>
+    </header>
+
+    <section id="overview" class="view active">
+      <div class="metrics" id="metrics"></div>
+
+      <div class="grid-two">
+        <section class="card hero-card">
+          <div class="card-head">
+            <div><span class="kicker">AUTONOMOUS WORKFLOW</span><h2>From failed payment to recovered revenue</h2></div>
+            <span class="pill">Bounded + explainable</span>
+          </div>
+          <div class="flow">
+            <div class="flow-node"><strong>01</strong><span>Detect</span><small>Revenue at risk</small></div>
+            <div class="arrow">→</div>
+            <div class="flow-node"><strong>02</strong><span>Diagnose</span><small>Root cause</small></div>
+            <div class="arrow">→</div>
+            <div class="flow-node accent"><strong>03</strong><span>Decide</span><small>Best intervention</small></div>
+            <div class="arrow">→</div>
+            <div class="flow-node"><strong>04</strong><span>Recover</span><small>Test-mode action</small></div>
+          </div>
+          <div class="guardrail-strip">
+            <span>✓ Max 2 retries</span><span>✓ Stop on success</span><span>✓ Escalate safely</span><span>✓ Every action logged</span>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head"><div><span class="kicker">RECOVERY MIX</span><h2>Agent actions</h2></div></div>
+          <div class="bars" id="actionBars"></div>
+        </section>
+      </div>
+
+      <section class="card">
+        <div class="card-head">
+          <div><span class="kicker">LIVE QUEUE</span><h2>Revenue at risk</h2></div>
+          <button class="outline" onclick="showView('transactions')">View all →</button>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>Customer</th><th>Amount</th><th>Failure</th><th>Attempts</th><th>AI action</th><th></th></tr></thead><tbody id="riskTable"></tbody></table></div>
+      </section>
+    </section>
+
+    <section id="transactions" class="view">
+      <div class="page-title"><div><span class="kicker">TRANSACTION QUEUE</span><h2>All transactions</h2></div></div>
+      <div class="filters">
+        <input id="search" placeholder="Search customer, transaction, failure reason…">
+        <select id="statusFilter"><option value="all">All</option><option value="at-risk">At risk</option><option value="recovered">Recovered</option></select>
+      </div>
+      <section class="card"><div class="table-wrap"><table><thead><tr><th>ID</th><th>Customer</th><th>Amount</th><th>Status</th><th>Failure</th><th>Attempts</th><th>Action</th></tr></thead><tbody id="allTable"></tbody></table></div></section>
+    </section>
+
+    <section id="agent" class="view">
+      <div class="page-title"><div><span class="kicker">AI AGENT</span><h2>Decision engine</h2></div></div>
+      <div class="agent-grid">
+        <section class="card">
+          <div class="card-head"><div><span class="kicker">HOW IT THINKS</span><h2>Recovery policy</h2></div></div>
+          <div class="policy">
+            <div><b>Temporary bank/network issue</b><span>→ bounded retry</span></div>
+            <div><b>Insufficient funds</b><span>→ payment link</span></div>
+            <div><b>Checkout abandoned</b><span>→ reminder</span></div>
+            <div><b>Expired card</b><span>→ update payment method</span></div>
+            <div><b>Repeated failure</b><span>→ merchant escalation</span></div>
+          </div>
+          <div class="note">The LLM layer is optional. If an AI API key is configured, RecoverAI asks the model for a structured decision; otherwise the same bounded policy engine keeps the demo fully functional.</div>
+        </section>
+        <section class="card">
+          <div class="card-head"><div><span class="kicker">GUARDRAILS</span><h2>Money-action safety</h2></div></div>
+          <div class="safety">
+            <div><span>↻</span><div><b>Maximum attempts</b><small>Never automate beyond 2 payment attempts</small></div><em>2</em></div>
+            <div><span>■</span><div><b>Success stop</b><small>Immediately stop when payment is captured</small></div><em>ON</em></div>
+            <div><span>!</span><div><b>Escalation</b><small>Repeated/ambiguous failures go to merchant</small></div><em>ON</em></div>
+            <div><span>≡</span><div><b>Auditability</b><small>Every decision and action is logged</small></div><em>ON</em></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="audit" class="view">
+      <div class="page-title"><div><span class="kicker">OBSERVABILITY</span><h2>Audit trail</h2></div></div>
+      <section class="card"><div class="audit" id="auditList"></div></section>
+    </section>
+  </main>
+</div>
+
+<div class="drawer-backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer">
+  <button class="close" onclick="closeDrawer()">×</button>
+  <div id="drawerContent"></div>
+</aside>
+<div class="toast" id="toast"></div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
